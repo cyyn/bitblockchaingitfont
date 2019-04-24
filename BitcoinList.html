@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/elementui.css">
+    <title>Demo</title>
+</head>
+
+<body>
+    <div id="app"  style="width:900px;height:600px;margin:300px auto" >
+            <el-table :data="showbitcoinblocklist" >
+                <el-table-column label="height">
+                    <template slot-scope="scope">
+                      <a :href="'http://www.baidu.com/' + scope.row.height" 
+                            style="text-decoration:none">{{scope.row.height}}</a>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="showtime" label="Age" >
+                </el-table-column>
+                <el-table-column prop="txSize" label="Transactions">
+                </el-table-column>
+                <el-table-column prop="showsizeOnDisk" label="Size (bytes)">
+                </el-table-column>
+            </el-table>
+    </div>
+
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="viewmodels/BitcoinList.js"></script>
+
+</body>
+
+</html>
