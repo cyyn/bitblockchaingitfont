@@ -9,9 +9,12 @@
     <title>Demo</title>
 </head>
 
-<body>
-    <div id="app"  style="width:900px;height:600px;margin:300px auto" >
-            <el-table :data="showbitcoinblocklist" >
+<body>    
+    <div id="app"  style="width:900px;height:600px;margin:100px auto" >
+            <el-input v-model="input" placeholder="Search" style="width:500px;height:30px;margin-left: 100px"></el-input>
+            <el-button type="primary" >Search</el-button><br><br><br><br><br>
+            <el-button plain>BLOCK</el-button><el-button plain>TRANSACTIONS</el-button>
+            <el-table :data="showbitcoinblocklist">
                 <el-table-column label="height">
                     <template slot-scope="scope">
                       <a :href="'http://www.baidu.com/' + scope.row.height" 
