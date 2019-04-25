@@ -10,8 +10,68 @@
 </head>
 
 <body>
-    <div id="app">
-        
+    <div id="app" style="margin: 50px auto;width:900px">
+        <h1>Block #{{blocklist.height}}</h1>
+        <table style="font-size: 17px;color:lightslategrey;width:900px;">
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">blockhash</td>
+                <td style="padding-left:40px">{{blocklist.blockhash}}</td>
+            </tr>
+            <tr style="height:50px">
+                <td style="padding-left:1px">height</td>
+                <td style="padding-left:40px">{{blocklist.height}}</td>
+            </tr>
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">time</td>
+                <td style="padding-left:40px">{{blocklist.time}}</td>
+            </tr>
+            <tr style="height:50px">
+                <td style="padding-left:10px">txSize</td>
+                <td style="padding-left:40px">{{blocklist.txSize}}</td>
+            </tr>
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">difficulty</td>
+                <td style="padding-left:40px">{{blocklist.difficulty}}</td>
+            </tr>
+            <tr style="height:50px">
+                <td style="padding-left:10px">prevBlockhash</td>
+                <td style="padding-left:40px">{{blocklist.prevBlockhash}}</td>
+            </tr>
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">nextBlockhash</td>
+                <td style="padding-left:40px">{{blocklist.nextBlockhash}}</td>
+            </tr>
+            <tr style="height:50px">
+                <td style="padding-left:10px">merkleRoot</td>
+                <td style="padding-left:40px">{{blocklist.merkleRoot}}</td>
+            </tr>
+        </table>
+        <br><br><br>
+        <h1>Transactions</h1>
+        <el-table :data="blocktransaction">
+            <el-table-column type="expand">
+                <template slot-scope="props">
+                    发送者的地址
+                    <ul>
+                        <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 1">
+                            <span v-if="x.address != null">{{x.address}}</span>
+                            <span v-else>not found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送的比特币{{x.amount}}
+                        </li>
+                    </ul>
+                    接收者的地址
+                    <ul>
+                        <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 2">
+                            <span v-if="x.address != null">{{x.address}}</span>
+                            <span v-else>not found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接收的比特币{{x.amount}}
+                        </li>
+                    </ul>
+                </template>
+            </el-table-column>
+            <el-table-column prop="txid" label="交易ID" width="600">
+            </el-table-column>
+            <el-table-column prop="time" label="交易时间" width="240">
+            </el-table-column>
+        </el-table>
     </div>
 
     <script src="assets/js/axios.min.js"></script>
