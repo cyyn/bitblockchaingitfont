@@ -16,7 +16,7 @@ var app = new Vue({
     getblocklist() {
       axios.get('http://localhost:8080/block/getBlockDetailByHeight', {
         params: {
-          blockheight:this.blockheight,
+          blockheight: this.blockheight,
         }
       })
         .then(function (response) {
@@ -31,9 +31,9 @@ var app = new Vue({
     handprevBlockhash() {
       axios.get('http://localhost:8080/block/getBlockDetailByHash', {
         params: {
-            blockhash:this.blocklist.prevBlockhash,
-          }
-        })
+          blockhash: this.blocklist.prevBlockhash,
+        }
+      })
         .then(function (response) {
           console.log(response);
           app.blocklist = response.data;
@@ -47,9 +47,9 @@ var app = new Vue({
     handnextBlockhash() {
       axios.get('http://localhost:8080/block/getBlockDetailByHash', {
         params: {
-            blockhash:this.blocklist.nextBlockhash,
-          }
-        })
+          blockhash: this.blocklist.nextBlockhash,
+        }
+      })
         .then(function (response) {
           console.log(response);
           app.blocklist = response.data;
@@ -59,6 +59,9 @@ var app = new Vue({
         .catch(function (error) {
           console.log(error);
         })
+    },
+    handByheight() {
+      location.href = "Blockdetails?blockheight=" + this.blockheight;
     }
   }
 })
