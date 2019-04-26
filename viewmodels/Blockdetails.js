@@ -25,6 +25,20 @@ var app = new Vue({
                     console.log(error);
                 })
         },
+        handblockhash() {
+            axios.get('http://localhost:8080/block/getBlockDetailByHash', {
+                params: {
+                    blockhash: this.blocklist.blockhash,
+                }
+            })
+                .then(function (response) {
+                    console.log(response)
+                    location.href = "Blocklist?blockheight=" + response.data.height;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        },
         handprevBlockhash() {
             axios.get('http://localhost:8080/block/getBlockDetailByHash', {
                 params: {
@@ -33,7 +47,7 @@ var app = new Vue({
             })
                 .then(function (response) {
                     console.log(response)
-                    location.href = "Blocklist?blockheight=" + response.height;
+                    location.href = "Blocklist?blockheight=" + response.data.height;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -47,25 +61,12 @@ var app = new Vue({
             })
                 .then(function (response) {
                     console.log(response)
-                    location.href = "Blocklist?blockheight=" + response.height;
+                    location.href = "Blocklist?blockheight=" + response.data.height;
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
         },
-        handblockhash() {
-            axios.get('http://localhost:8080/block/getBlockDetailByHash', {
-                params: {
-                    blockhash: this.blocklist.blockhash,
-                }
-            })
-                .then(function (response) {
-                    console.log(response)
-                    location.href = "Blocklist?blockheight=" + response.height;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
+
     }
 })
