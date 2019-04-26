@@ -44,7 +44,10 @@
                     发送者的地址
                     <ul>
                         <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 1">
-                            <span v-if="x.address != null">{{x.address}}</span>
+                            <span v-if="x.address != null">
+                                <el-button @click="handbyaddress(x.address)" type="text" size="small">
+                                    {{x.address}}</el-button>
+                            </span>
                             <span v-else>not
                                 found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送的比特币{{x.amount}}
                         </li>
@@ -52,7 +55,10 @@
                     接收者的地址
                     <ul>
                         <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 2">
-                            <span v-if="x.address != null">{{x.address}}</span>
+                            <span v-if="x.address != null">
+                                <el-button @click="handbyaddress(x.address)" type="text" size="small">
+                                    {{x.address}}</el-button>
+                            </span>
                             <span v-else>not
                                 found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接收的比特币{{x.amount}}
                         </li>

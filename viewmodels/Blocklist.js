@@ -13,6 +13,7 @@ var app = new Vue({
     this.getblocklist();
   },
   methods: {
+    // 根据块的高度查询块信息
     getblocklist() {
       axios.get('http://localhost:8080/block/getBlockDetailByHeight', {
         params: {
@@ -28,6 +29,7 @@ var app = new Vue({
           console.log(error);
         })
     },
+    //根据上个块查询块信息
     handprevBlockhash() {
       axios.get('http://localhost:8080/block/getBlockDetailByHash', {
         params: {
@@ -44,6 +46,7 @@ var app = new Vue({
           console.log(error);
         })
     },
+    //根据下个块查询块信息
     handnextBlockhash() {
       axios.get('http://localhost:8080/block/getBlockDetailByHash', {
         params: {
@@ -60,8 +63,13 @@ var app = new Vue({
           console.log(error);
         })
     },
+    // 跳转到这个高度的块信息列表
     handByheight() {
       location.href = "Blockdetails?blockheight=" + this.blockheight;
+    },
+    // 跳转到该地址信息列表
+    handbyaddress(address){
+         location.href="Addresslist?address="+address;
     }
   }
 })

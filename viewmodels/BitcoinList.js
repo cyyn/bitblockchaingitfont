@@ -19,6 +19,7 @@ var app = new Vue({
         this.getblocklist();
     },
     methods: {
+        // 展示块信息
         getblocklist() {
             axios.get('http://localhost:8080/block/getRecentBlocks')
                 .then(function (response) {

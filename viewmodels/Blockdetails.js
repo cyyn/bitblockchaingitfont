@@ -11,6 +11,7 @@ var app = new Vue({
         this.getblocklist();
     },
     methods: {
+        // 根据块的高度查询块信息
         getblocklist() {
             axios.get('http://localhost:8080/block/getBlockDetailByHeight', {
                 params: {
@@ -25,6 +26,7 @@ var app = new Vue({
                     console.log(error);
                 })
         },
+        // 根据块的hash查询块的信息
         handblockhash() {
             axios.get('http://localhost:8080/block/getBlockDetailByHash', {
                 params: {
@@ -39,6 +41,7 @@ var app = new Vue({
                     console.log(error);
                 })
         },
+        // 根据上一个块的hash查询块信息
         handprevBlockhash() {
             axios.get('http://localhost:8080/block/getBlockDetailByHash', {
                 params: {
@@ -53,6 +56,7 @@ var app = new Vue({
                     console.log(error);
                 })
         },
+        // 根据下一个块的hash查询块信息
         handnextBlockhash() {
             axios.get('http://localhost:8080/block/getBlockDetailByHash', {
                 params: {
