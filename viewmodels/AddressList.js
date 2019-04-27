@@ -10,7 +10,7 @@ var app = new Vue({
         var address = url.searchParams.get("address");
         this.address = address;
         this.getByaddress();
-    },
+    },  
     methods: {
         // 根据地址查询地址信息
         getByaddress() {
@@ -38,11 +38,20 @@ var app = new Vue({
                     console.log(response);
                     app.TransactionDetailDTO = response.data;
                     app.transactiondetails = response.data.transactiondetails;
+                    app.address = response.data.address;
                     this.reload();
+                    qrcode.this.reload();
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
         }
     }
+})
+
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: app.address,
+    width: 200,
+    height: 200,
+    correctLevel: QRCode.CorrectLevel.L,
 })

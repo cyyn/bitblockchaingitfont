@@ -14,69 +14,75 @@
         <font style="font-size:35px;font-weight: 800">ViaBTC Bitcoin Mining Pool </font>
         <font style="font-size:23px;font-weight: 500">Addresses are identifiers which you use to send bitcoins to
             another person.</font><br><br><br>
-        <table style="font-size: 16px;color:rgb(87, 42, 42);width:750px;" cellspacing="10">
-            <tr bgcolor="moccasin" style="height:60px;font-size:21px;font-weight: 750">
-                <td style="padding-left:10px;">
-                    Summary</td>
-                <td style="padding-left:10px">
-                    Transactions</td>
-            </tr>
-            <tr bgcolor="rgba(red, green, blue, alpha)" style="height:60px;">
-                <td style="padding-left:5px">
-                    Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{TransactionDetailDTO.address}}
-                </td>
-                <td style="padding-left:15px">
-                    No.Transactions&nbsp;&nbsp;&nbsp;{{TransactionDetailDTO.count}}</td>
-            </tr>
+        <div style="width:750px;float:left">
+            <table style="font-size: 16px;color:rgb(87, 42, 42);width:750px;" cellspacing="10">
+                <tr bgcolor="moccasin" style="height:60px;font-size:21px;font-weight: 750">
+                    <td style="padding-left:10px;">
+                        Summary</td>
+                    <td style="padding-left:10px">
+                        Transactions</td>
+                </tr>
+                <tr bgcolor="rgba(red, green, blue, alpha)" style="height:60px;">
+                    <td style="padding-left:5px">
+                        Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{TransactionDetailDTO.address}}
+                    </td>
+                    <td style="padding-left:15px">
+                        No.Transactions&nbsp;&nbsp;&nbsp;{{TransactionDetailDTO.count}}</td>
+                </tr>
 
-            <tr bgcolor="rgba(red, green, blue, alpha)" style="height:60px;">
-                <td style="padding-left:5px" colspan="2">
-                    Hash
-                    160 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;536ffa992491508dca0354e52f32a3a7a679a53a</td>
-            </tr>
-        </table>
-        <br><br><br>
-        <font style="font-size:35px;font-weight: 750">Transactions </font>
-        <font style="font-size:23px;font-weight: 400">(Oldest First)</font>
-        <el-table :data="transactiondetails" style="font-size:17px;">
-            <el-table-column type="expand">
-                <template slot-scope="props">
-                    发送者的地址
-                    <ul>
-                        <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 1">
-                            <span v-if="x.address != null">
-                                <el-button @click="handbyaddress(x.address)" type="text" size="small">
-                                    {{x.address}}</el-button>
-                            </span>
-                            <span v-else>not
-                                found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送的比特币{{x.amount}}
-                        </li>
-                    </ul>
-                    接收者的地址
-                    <ul>
-                        <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 2">
-                            <span v-if="x.address != null">
-                                <el-button @click="handbyaddress(x.address)" type="text" size="small">
-                                    {{x.address}}</el-button>
-                            </span>
-                            <span v-else>not
-                                found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接收的比特币{{x.amount}}
-                        </li>
-                    </ul>
-                </template>
-            </el-table-column>
-            <el-table-column prop="txid" label="交易ID" width="800">
-            </el-table-column>
-            <el-table-column prop="time" label="交易时间" width="280">
-            </el-table-column>
-        </el-table>
-
+                <tr bgcolor="rgba(red, green, blue, alpha)" style="height:60px;">
+                    <td style="padding-left:5px" colspan="2">
+                        Hash
+                        160 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;536ffa992491508dca0354e52f32a3a7a679a53a
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="qrcode" style="width:200px;height: 300px;float:left;margin-left: 65px;margin-top: 10px">
+        </div>
+        <div style="float:none">
+            <font style="font-size:35px;font-weight: 750">Transactions </font>
+            <font style="font-size:23px;font-weight: 400">(Oldest First)</font>
+            <el-table :data="transactiondetails" style="font-size:17px;">
+                <el-table-column type="expand">
+                    <template slot-scope="props">
+                        发送者的地址
+                        <ul>
+                            <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 1">
+                                <span v-if="x.address != null">
+                                    <el-button @click="handbyaddress(x.address)" type="text" size="small">
+                                        {{x.address}}</el-button>
+                                </span>
+                                <span v-else>not
+                                    found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送的比特币{{x.amount}}
+                            </li>
+                        </ul>
+                        接收者的地址
+                        <ul>
+                            <li v-for="x in props.row.txDetailInTxInfos" v-if="x.type == 2">
+                                <span v-if="x.address != null">
+                                    <el-button @click="handbyaddress(x.address)" type="text" size="small">
+                                        {{x.address}}</el-button>
+                                </span>
+                                <span v-else>not
+                                    found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接收的比特币{{x.amount}}
+                            </li>
+                        </ul>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="txid" label="交易ID" width="800">
+                </el-table-column>
+                <el-table-column prop="time" label="交易时间" width="280">
+                </el-table-column>
+            </el-table>
+        </div>
     </div>
 
     <script src="assets/js/axios.min.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/vue.js"></script>
     <script src="assets/js/elementui.js"></script>
+    <script src="assets/js/qrcode.min.js"></script>
     <script src="viewmodels/AddressList.js"></script>
 
 </body>
