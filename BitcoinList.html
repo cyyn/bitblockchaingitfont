@@ -9,25 +9,34 @@
     <title>Demo</title>
 </head>
 
-<body>    
-    <div id="app"  style="width:900px;height:600px;margin:100px auto" >
-            <el-input v-model="input" placeholder="Search" style="width:500px;height:30px;margin-left: 100px"></el-input>
-            <el-button type="primary" >Search</el-button><br><br><br><br><br>
-            <el-button plain>BLOCK</el-button><el-button plain>TRANSATIONS</el-button>
-            <el-table :data="showbitcoinblocklist">
-                <el-table-column label="height">
-                    <template slot-scope="scope">
-                      <a :href="'Blocklist?blockheight=' + scope.row.height"
-                            style="text-decoration:none"><font style="color:blue">{{scope.row.height}}</font></a>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="showtime" label="Age" >
-                </el-table-column>
-                <el-table-column prop="txSize" label="Transactions">
-                </el-table-column>
-                <el-table-column prop="showsizeOnDisk" label="Size (bytes)">
-                </el-table-column>
-            </el-table>
+<body>
+    <div id="app" style="width:900px;height:600px;margin:100px auto">
+        <el-input v-model="input" placeholder="Search" style="width:500px;height:30px;margin-left: 100px"></el-input>
+        <el-button type="primary">Search</el-button><br><br><br><br><br>
+        <template>
+            <el-tabs type="border-card" v-model="activeName">
+                <el-tab-pane label="Block" name="first">
+                    <el-table :data="showbitcoinblocklist">
+                        <el-table-column label="height">
+                            <template slot-scope="scope">
+                                <a :href="'Blocklist?blockheight=' + scope.row.height" style="text-decoration:none">
+                                    <font style="color:blue">{{scope.row.height}}</font>
+                                </a>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="showtime" label="Age">
+                        </el-table-column>
+                        <el-table-column prop="txSize" label="Transactions">
+                        </el-table-column>
+                        <el-table-column prop="showsizeOnDisk" label="Size (bytes)">
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
+                <el-tab-pane label="TRANSATIONS" name="second">TRANSATIONS</el-tab-pane>
+                <br><el-button size="small" style="font-size:16px;margin-left: 370px" >View More</el-button>
+            </el-tabs>
+        </template>
+
     </div>
 
     <script src="assets/js/axios.min.js"></script>

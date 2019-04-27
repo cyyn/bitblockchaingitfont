@@ -2,7 +2,8 @@ var app = new Vue({
     el: '#app',
     data: {
         input:'',
-        bitcoinblocklist: []
+        bitcoinblocklist: [],
+        activeName:'first',
     },
     computed: {
         showbitcoinblocklist(){
