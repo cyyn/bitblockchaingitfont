@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div id="app" style="width:900px;height:600px;margin:100px auto">
+    <div id="app" style="width:900px;margin:100px auto">
         <el-input v-model="input" placeholder="Search" style="width:500px;height:30px;margin-left: 100px"></el-input>
         <el-button type="primary">Search</el-button><br><br><br><br><br>
         <template>
@@ -32,11 +32,26 @@
                         </el-table-column>
                     </el-table>
                 </el-tab-pane>
-                <el-tab-pane label="TRANSATIONS" name="second">TRANSATIONS</el-tab-pane>
+                <el-tab-pane label="TRANSATIONS" name="second">
+                    <el-table :data="showbitcoinTransactionlist">
+                        <el-table-column label="Transaction Hash" show-overflow-tooltip="true">
+                            <template slot-scope="scope">
+                                <!-- <a :href="" style="text-decoration:none"> -->
+                                    <font style="color:blue">{{scope.row.txhash}}</font>
+                                <!-- </a> -->
+                            </template>
+                        </el-table-column stretch="false">
+                        <el-table-column prop="showtime" label="Age">
+                        </el-table-column>
+                        <el-table-column prop="amountbtc" label="Amount (BTC)">
+                        </el-table-column>
+                        <el-table-column prop="amountusd" label="Amount (USD)">
+                        </el-table-column>
+                    </el-table>
+                </el-tab-pane>
                 <br><el-button size="small" style="font-size:16px;margin-left: 370px" >View More</el-button>
             </el-tabs>
         </template>
-
     </div>
 
     <script src="assets/js/axios.min.js"></script>
