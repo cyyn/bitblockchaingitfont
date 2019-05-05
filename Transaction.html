@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/elementui.css">
+    <title>Demo</title>
+</head>
+
+<body>
+    <div id="app" style="margin: 50px auto;width:900px">
+        <font style="font-size:30px;font-weight: 800">Transaction</font>
+        <font style="font-size:20px;font-weight: 500"> View information about a bitcoin transaction</font><br><br>
+        <table style="font-size: 17px;color:lightslategrey;width:900px;">
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">blockhash</td>
+                <td style="padding-left:40px">{{TransactionHashone.blockhash}}</td>
+            </tr>
+            <tr style="height:50px">
+                <td style="padding-left:10px">size</td>
+                <td style="padding-left:40px">{{TransactionHashone.size}}</td>
+            </tr>
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">weight</td>
+                <td style="padding-left:40px">{{TransactionHashone.weight}}</td>
+            </tr>
+            <tr style="height:50px">
+                <td style="padding-left:10px">time</td>
+                <td style="padding-left:40px">{{TransactionHashone.time}}</td>
+            </tr>
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">totalInput</td>
+                <td style="padding-left:40px">{{TransactionHashone.totalInput}}</td>
+            </tr>
+            <tr style="height:50px">
+                <td style="padding-left:10px">totalOutput</td>
+                <td style="padding-left:40px">{{TransactionHashone.totalOutput}}</td>
+            </tr>
+            <tr bgcolor="moccasin" style="height:50px">
+                <td style="padding-left:10px">fees</td>
+                <td style="padding-left:40px">{{TransactionHashone.fees}}</td>
+            </tr>
+        </table>
+        <br><br><br>
+        <el-table :data="TransactionHash">
+            <el-table-column type="expand">
+                <template slot-scope="props">
+                    发送者的地址
+                    <ul>
+                        <li v-for="x in props.row.transactiondetails" v-if="x.type == 1">
+                            <span v-if="x.address != null">
+                                <el-button @click="handbyaddress(x.address)" type="text" size="small">{{x.address}}
+                                </el-button>
+                            </span>
+                            <span v-else>not
+                                found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送的比特币{{x.amount}}
+                        </li>
+                    </ul>
+                    接收者的地址
+                    <ul>
+                        <li v-for="x in props.row.transactiondetails" v-if="x.type == 2">
+                            <span v-if="x.address != null">
+                                <el-button @click="handbyaddress(x.address)" type="text" size="small">{{x.address}}
+                                </el-button>
+                            </span>
+                            <span v-else>not
+                                found</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接收的比特币{{x.amount}}
+                        </li>
+                    </ul>
+                </template>
+            </el-table-column>
+             <el-table-column prop="txhash" label="交易Hash" width="600">
+            </el-table-column>
+        </el-table>
+    </div>
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="viewmodels/Transaction.js"></script>
+
+</body>
+
+</html>

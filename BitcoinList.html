@@ -36,9 +36,9 @@
                     <el-table :data="showbitcoinTransactionlist">
                         <el-table-column label="Transaction Hash" show-overflow-tooltip="true">
                             <template slot-scope="scope">
-                                <!-- <a :href="" style="text-decoration:none"> -->
+                                <a :href="'Transaction?txhash=' + scope.row.txhash" style="text-decoration:none">
                                     <font style="color:blue">{{scope.row.txhash}}</font>
-                                <!-- </a> -->
+                                </a>
                             </template>
                         </el-table-column stretch="false">
                         <el-table-column prop="showtime" label="Age">
